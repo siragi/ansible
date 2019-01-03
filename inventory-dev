@@ -1,24 +1,27 @@
 [loadbalancer]
 #lb01
-192.168.122.22
+#192.168.122.22
+ubu1
 
 [webserver]
 #app01
 #app02
-192.168.122.131
+#192.168.122.131
+ubu2
 
 [database]
-192.168.122.98
 #db01
+#192.168.122.98
+ubuntu1804
 
 [control]
 # 192.168.122.191
 control ansible_connection=local
 
 [py3-hosts]
-192.168.122.22
-192.168.122.98
-192.168.122.131
+ubu1
+ubuntu1804
+ubu2
 control
 
 [py3-hosts:vars]
