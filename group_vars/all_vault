@@ -1,3 +1,0 @@
----
-vault_ansible_become_user: ansible
-vault_ansible_become_pass: ansible

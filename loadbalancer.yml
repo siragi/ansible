@@ -1,6 +1,9 @@
 ---
 - hosts: loadbalancer
+  #remote_user: ansible
   become: true
+  #become_method: sudo
+
   tasks:
    - name: install nginx
      apt: name=nginx state=present update_cache=yes

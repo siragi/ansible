@@ -3,6 +3,12 @@
 #192.168.122.22
 ubu1
 
+
+[all:vars]
+ansible_user=ansible  # ssh login user
+ansible_become_method=sudo
+ansible_become_pass='{{ my_cluser_sudo_pass }}'   [cluster] www1 www2 www3 db1 db2 cache1 cache2
+
 [webserver]
 #app01
 #app02
