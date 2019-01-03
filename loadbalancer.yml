@@ -1,8 +1,6 @@
 ---
 - hosts: loadbalancer
-  #remote_user: ansible
   become: true
-  #become_method: sudo
 
   tasks:
    - name: install nginx
