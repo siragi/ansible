@@ -14,15 +14,18 @@
 192.168.122.98
 #db01
 
-#[control]
-#control ansible_connection=local
+[control]
+# 192.168.122.191
+control ansible_connection=local
 
 [py3-hosts]
 192.168.122.22
 192.168.122.98
+control
 
 [py3-hosts:vars]
 ansible_python_interpreter=/usr/bin/python3
 
 # Example inventory that makes an alias for localhost that uses Python3
+# from https://docs.ansible.com/ansible/latest/reference_appendices/python_3_support.html
 localhost-py3 ansible_host=localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python3
