@@ -1,0 +1,28 @@
+---
+# Bring stack down
+- hosts: loadbalancer
+  become: true
+  tasks:
+   - apt: name=nginx state=stopped
+
+- hosts: webserver
+  become: true
+  tasks:
+   - apt: name=apache2 state=stopped
+
+# Restart mysql
+- hosts: database
+  become: true
+  tasks:
+   - apt: name=mysql state=restarted
+
+# Bring stack up
+- hosts: webserver
+  become: true
+  tasks:
+   - apt: name=nginx state=started
+
+- hosts: loadbalancer
+  become: true
+  tasks:
+   - apt: name=nginx state=started
