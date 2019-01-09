@@ -9,6 +9,9 @@ ubu1
 #192.168.122.131
 ubu2
 
+[webserver-py3]
+ubu3
+
 [database]
 #db01
 #192.168.122.98
@@ -21,8 +24,10 @@ control ansible_connection=local
 [py3-hosts]
 ubu1
 ubuntu1804
-ubu2
+# ubu2
 control
+ubu3  # 192.168.122.185
+#ubu4
 
 [py3-hosts:vars]
 ansible_python_interpreter=/usr/bin/python3
