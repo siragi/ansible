@@ -16,7 +16,6 @@ ubu1
 ubu2
 
 [webserver-py3]
-# 192.168.122.185
 ubu3
 
 [database]
