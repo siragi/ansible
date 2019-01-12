@@ -1,11 +1,11 @@
 upstream demo {
-{% for server in groups.webserver %}
-  server {{ server }};
-{% endfor %}
+  {% for server in groups.webserver %}
+    server {{ server }};
+  {% endfor %}
 
-{% for server in groups.webserver-py3 %}
-  server {{ server }};
-{% endfor %}
+  {% for server in groups['webserver-py3'] %}
+    server {{ server }};
+  {% endfor %}
 }
 
 server {

@@ -11,9 +11,10 @@
 
   - name: configure nxginx site
     template: src=templates/nginx.conf.j2 dest=/etc/nginx/sites-available/demo mode=0644
+    notify: restart nginx
 
   - name: de-activate default nginx sites
-    file: path=/etc/nginx/sites/enabled/default state=absent
+    file: path=/etc/nginx/sites-enabled/default state=absent
     notify: restart nginx
 
   - name: activate demo nginx sites
@@ -21,5 +22,5 @@
     notify: restart nginx
 
   handlers:
-  - name: restart nxginx
+  - name: restart nginx
     service: name=nginx state=restarted
