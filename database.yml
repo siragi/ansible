@@ -3,7 +3,15 @@
   become: true
 
   tasks:
-   - name: install mysql-server
-     apt: name=mysql-server state=present update_cache=yes
-   - name: ensure mysql started
-     service: name=mysql state=started enabled=yes
+  - name: install mysql-server
+    apt: name=mysql-server state=present update_cache=yes
+  - name: ensure mysql started
+    service: name=mysql state=started enabled=yes
+
+  - name: ensure mysql listening on all ports
+    lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf regexp=^bind-address line="bind-address = 0.0.0.0"
+    notify: restart mysql
+
+  handlers:
+  - name: restart mysql
+    service: name=mysql state=restarted
