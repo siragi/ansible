@@ -3,20 +3,20 @@
 - hosts: loadbalancer
   become: true
   tasks:
-  - apt: name=nginx state=stopped
+  - service: name=nginx state=stopped
   - wait_for: port=80 state=drained
 
 - hosts: webserver
   become: true
   tasks:
-  - apt: name=apache2 state=stopped
+  - service: name=apache2 state=stopped
   - wait_for: port=80 state=stopped
 
 # Restart mysql
 - hosts: database
   become: true
   tasks:
-  - apt: name=mysql state=restarted
+  - service: name=mysql state=restarted
   - wait_for: port=3306 state=started
     # state=started is default.
 
@@ -24,11 +24,11 @@
 - hosts: webserver
   become: true
   tasks:
-  - apt: name=apache2 state=started
+  - service: name=apache2 state=started
   - wait_for: port=80
 
 - hosts: loadbalancer
   become: true
   tasks:
-  - apt: name=nginx state=started
+  - service: name=nginx state=started
   - wait_for: port=80
