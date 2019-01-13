@@ -11,6 +11,7 @@
 
   - name: install mysql-server
     apt: name=mysql-server state=present update_cache=yes
+
   - name: ensure mysql started
     service: name=mysql state=started enabled=yes
 
