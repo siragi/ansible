@@ -18,9 +18,9 @@ def index():
 @app.route('/db')
 def dbtest():
     try:
-            db.create_all()
+        db.create_all()
     except Exception as e:
-            return e.message + '\n'
+        return e.message + '\n'
     return 'Database Connected from %s!\n' % hostname
 
 

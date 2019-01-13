@@ -1,26 +1,26 @@
 # 192.168.122.191 control
-# 192.168.122.98  ubuntu1804
-# 192.168.122.22  ubu1
-# 192.168.122.131 ubu2
-# 192.168.122.185 ubu3
+# 192.168.122.98  db01 ubuntu1804
+# 192.168.122.22  lb01 ubu1
+# 192.168.122.131 app01 ubu2
+# 192.168.122.185 app02 ubu3
 # 192.168.122.31  ubu4
 
 
 [loadbalancer]
-#lb01
-ubu1
+lb01
+#ubu1
 
 [webserver]
-#app01
-#app02
-ubu2
+app01
+#ubu2
 
 [webserver-py3]
-ubu3
+app02
+#ubu3
 
 [database]
-#db01
-ubuntu1804
+db01
+#ubuntu1804
 
 [control]
 control ansible_connection=local

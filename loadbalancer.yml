@@ -9,7 +9,7 @@
   - name: ensure nginx started
     service: name=nginx state=started enabled=yes
 
-  - name: configure nxginx site
+  - name: configure nginx site
     template: src=templates/nginx.conf.j2 dest=/etc/nginx/sites-available/demo mode=0644
     notify: restart nginx
 
