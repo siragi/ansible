@@ -22,7 +22,7 @@
     mysql_db: name=demo state=present
 
   - name: create demo user
-    mysql_db: name=demo password=demo priv=demo.*:ALL host='%' state=present
+    mysql_user: name=demo password=demo priv=demo.*:ALL host='%' state=present
 
   handlers:
   - name: restart mysql
