@@ -58,7 +58,7 @@
     register: app_index
 
   - fail: msg="index failed to return content"
-    when: "'Hello, from sunny item.item!' not in item.content"
+    when: "'Hello, from sunny '~item.item~'!' not in item.content"
     with_items: "{{app_index.results}}"
 
   - name: verify backend db response
@@ -67,5 +67,5 @@
     register: app_db
 
   - fail: msg="db failed to return content"
-    when: "'Database Connected from item.item!' not in item.content"
+    when: "'Database Connected from '~item.item~'!' not in item.content"
     with_items: "{{app_db.results}}"
