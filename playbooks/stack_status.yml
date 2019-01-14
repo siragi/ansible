@@ -53,7 +53,7 @@
   - name: verify backend index response
     uri: url=http://{{item}} return_content=yes
     with_items:
-    - "{{groups['webserver']}}"
+    - "{{groups.webserver}}"
     - "{{groups['webserver-py3']}}"
     register: app_index
 
@@ -63,7 +63,9 @@
 
   - name: verify backend db response
     uri: url=http://{{item}}/db return_content=yes
-    with_items: "{{groups.webserver}}"
+    with_items:
+    - "{{groups.webserver}}"
+    - "{{groups['webserver-py3']}}"
     register: app_db
 
   - fail: msg="db failed to return content"
