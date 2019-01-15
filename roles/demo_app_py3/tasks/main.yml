@@ -6,7 +6,7 @@
     - python3-virtualenv
     - python3-mysqldb
 
-- name: copy demo app source
+- name: copy demo app-py3 source
   copy: src=demo/app-py3/ dest=/var/www/demo mode=0755
   notify: restart apache2
 
