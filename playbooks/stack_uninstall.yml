@@ -1,0 +1,47 @@
+---
+# Bring stack down
+- hosts: loadbalancer
+  become: true
+  tasks:
+    - service: name=nginx state=stopped
+    - wait_for: port=80 state=drained
+    - name: uninstall tools
+      apt: name={{item}} state=absent
+      with_items:
+       - curl
+       - python-httplib2
+       - python3-httplib2
+
+- hosts: webserver, webserver-py3
+  become: true
+  tasks:
+    - service: name=apache2 state=stopped
+    - wait_for: port=80 state=stopped
+
+    # - name: ensure mod_wsgi disabled
+    #   apache2_module: state=absent name=wsgi
+
+    - name: uninstall web components
+      apt: name={{item}} state=absent
+      with_items:
+        - apache2
+        - libapache2-mod-wsgi
+        - libapache2-mod-wsgi-py3
+
+- hosts: database
+  become: true
+  tasks:
+    - service: name=mysql state=stopped
+    - wait_for: port=3306 state=stopped
+
+    - name: configure mysql listening again on local port
+      lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf regexp=^bind-address line="bind-address = 127.0.0.1"
+
+    - name: uninstall mysql-server
+      apt: name=mysql-server state=absent
+
+    - name: uninstall tools
+      apt: name={{item}} state=absent
+      with_items:
+        - python-mysqldb
+        - python3-mysqldb
