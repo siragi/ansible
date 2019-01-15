@@ -35,7 +35,8 @@
       with_items: "{{groups.loadbalancer}}"
       register: lb_index
 
-    - fail: msg="index failed to return content"
+    - name: check response and skip failure message when ok
+      fail: msg="index failed to return content"
       when: "'Hello, from sunny' not in item.content"
       with_items: "{{lb_index.results}}"
 
@@ -44,7 +45,8 @@
       with_items: "{{groups.loadbalancer}}"
       register: lb_db
 
-    - fail: msg="db failed to return content"
+    - name: check response and skip failure message when ok
+      fail: msg="db failed to return content"
       when: "'Database Connected from' not in item.content"
       with_items: "{{lb_db.results}}"
 
@@ -57,7 +59,8 @@
       - "{{groups['webserver-py3']}}"
       register: app_index
 
-    - fail: msg="index failed to return content"
+    - name: check response and skip failure message when ok
+      fail: msg="index failed to return content"
       when: "'Hello, from sunny '~item.item~'!' not in item.content"
       with_items: "{{app_index.results}}"
 
@@ -68,6 +71,7 @@
       - "{{groups['webserver-py3']}}"
       register: app_db
 
-    - fail: msg="db failed to return content"
+    - name: check response and skip failure message when ok
+      fail: msg="db failed to return content"
       when: "'Database Connected from '~item.item~'!' not in item.content"
       with_items: "{{app_db.results}}"
