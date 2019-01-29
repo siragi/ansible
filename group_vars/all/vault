@@ -1,0 +1,12 @@
+---
+vault_ansible_become_password: whateverpassword
+
+# this file is ignored by git via .gitignore, so you have to create and encrypt the file by yourself using:
+
+# nano encrypt group_vars/all/vault
+# copy/paste the content here
+# chmod 600 group_vars/all/vault
+# ansible-vault encrypt group_vars/all/vault
+
+# and later edit using
+# ansible-vault edit group_vars/all/vault
