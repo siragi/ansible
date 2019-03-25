@@ -9,7 +9,7 @@
   apt: name=mysql-server state=present update_cache=yes
 
 - name: configure mysql listening on all ports
-  lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf regexp=^bind-address line="bind-address = 0.0.0.0"
+  lineinfile: dest=/etc/mysql/mysql.conf.d/mysqld.cnf regexp=^bind-address line="bind-address = {{ ansible_default_ipv4.address }}"
   notify: restart mysql
 
 - name: ensure mysql started
