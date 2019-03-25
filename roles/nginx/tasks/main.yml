@@ -18,7 +18,7 @@
   register: active
 
 - name: de-activate sites
-  file: path=/etc/nginx/sites-enabled/{{ sites }} state=absent
+  file: path=/etc/nginx/sites-enabled/{{ item }} state=absent
   with_items: "{{ active.stdout_lines }}"
   when: "item not in sites"
   notify: restart nginx
