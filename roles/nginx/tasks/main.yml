@@ -17,7 +17,7 @@
   file: path=/etc/nginx/sites-enabled/default state=absent
   notify: restart nginx
 
-- name: activate demo nginx sites
+- name: activate nginx sites
   file: src=/etc/nginx/sites-available/{{ item.key }} dest=/etc/nginx/sites-enabled/{{ item.key }} state=link
   with_dict: "{{ sites }}"
   notify: restart nginx
