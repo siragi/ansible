@@ -4,7 +4,7 @@ upstream {{ item.key }} {
   {% endfor %}
 
   {% for server in groups['webserver-py3'] %}
-    server {{ server }};
+    server {{ server }}:{{ item.value.backend }};
   {% endfor %}
 }
 
