@@ -14,7 +14,7 @@
   notify: restart nginx
 
 - name: get active sites
-  shell: ls -l /etc/nginx/sites-enabled
+  shell: ls -1 /etc/nginx/sites-enabled
   register: active
 
 - name: de-activate sites
