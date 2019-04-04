@@ -1,9 +1,10 @@
 ---
 vault_ansible_become_password: whateverpassword
+vault_demo_db_pass: demopassword
 
 # this file is ignored by git via .gitignore, so you have to create and encrypt the file by yourself using:
 
-# nano encrypt group_vars/all/vault
+# nano group_vars/all/vault
 # copy/paste the content here
 # chmod 600 group_vars/all/vault
 # ansible-vault encrypt group_vars/all/vault
