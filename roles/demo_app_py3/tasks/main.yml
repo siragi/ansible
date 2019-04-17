@@ -25,10 +25,6 @@
     virtualenv_python: python3
   notify: restart apache2
 
-- name: de-activate default apache site
-  file: path=/etc/apache2/sites-enabled/000-default.conf state=absent
-  notify: restart apache2
-
 - name: activate demo apache site
   file: src=/etc/apache2/sites-available/demo.conf dest=/etc/apache2/sites-enabled/demo.conf state=link
   notify: restart apache2
