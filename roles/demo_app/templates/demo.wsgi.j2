@@ -3,7 +3,7 @@ execfile(activate_this, dict(__file__=activate_this))
 # py3: exec(open("./filename").read())
 
 import os
-os.environ['DATABASE_URI'] = 'mysql://demo:demo@db01/demo'
+os.environ['DATABASE_URI'] = 'mysql://{{ db_user }}:{{ db_pass }}@{{ groups.database[0] }}/{{ db_name }}'
 
 import sys
 sys.path.insert(0, '/var/www/demo')

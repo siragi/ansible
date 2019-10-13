@@ -1,6 +1,6 @@
 ---
 - name: install web components
-  apt: name={{item}} state=present update_cache=yes
+  apt: name={{ item }} state=present update_cache=yes
   with_items:
     - python3-pip
     - python3-virtualenv
@@ -8,6 +8,10 @@
 
 - name: copy demo app-py3 source
   copy: src=demo/app-py3/ dest=/var/www/demo mode=0755
+  notify: restart apache2
+
+- name: copy demo.wsgi.j2
+  template: src=demo.wsgi.j2 dest=/var/www/demo/demo.wsgi mode=0755
   notify: restart apache2
 
 - name: copy apache virtual host config
@@ -19,10 +23,6 @@
     requirements: /var/www/demo/requirements.txt
     virtualenv: /var/www/demo/.venv
     virtualenv_python: python3
-  notify: restart apache2
-
-- name: de-activate default apache site
-  file: path=/etc/apache2/sites-enabled/000-default.conf state=absent
   notify: restart apache2
 
 - name: activate demo apache site

@@ -4,7 +4,10 @@
 # 192.168.122.131 app01 ubu2
 # 192.168.122.185 app02 ubu3
 # 192.168.122.31  ubu4
+# 192.168.122.192 centos1
 
+[centos7]
+centos1
 
 [loadbalancer]
 lb01
